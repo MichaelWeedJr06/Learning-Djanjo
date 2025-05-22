@@ -11,7 +11,7 @@
   <body>
     <nav>
       <a href="/">Home</a> | <a href="/about">About</a> |
-      <a href="/posts">posts</a> |
+      <a href="{% url 'posts:list' %}">posts</a> |
     </nav>
     <main>{% block content %} {% endblock %}</main>
   </body>
