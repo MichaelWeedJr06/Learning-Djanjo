@@ -11,7 +11,17 @@
   <body>
     <nav>
       <a href="/">Home</a> | <a href="/about">About</a> |
-      <a href="{% url 'posts:list' %}">posts</a> |
+      <a href="{% url 'posts:list' %}">posts</a> 
+      {% if user.is_authenticated %}
+        | <a href="{% url 'posts:new-post' %}">New Post</a> | 
+        <form class="logout" action="{% url 'users:logout' %}" method="post">
+          {% csrf_token %}
+          <button class="logout-button">logout</button>
+        </form>
+        {% else %}
+          | <a href="{% url 'users:register' %}">register</a>
+      | <a href="{% url 'users:login' %}">login</a>
+        {% endif %}
     </nav>
     <main>{% block content %} {% endblock %}</main>
   </body>
